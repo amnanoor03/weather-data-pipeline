@@ -44,7 +44,6 @@ def save_to_db(weather_data):
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         """)
-
         # Insert the data
         insert_query = """
             INSERT INTO weather (city, temp, humidity, description)
@@ -56,20 +55,15 @@ def save_to_db(weather_data):
             weather_data['humidity'],
             weather_data['description']
         ))
-
         conn.commit()
         print(f"Successfully saved weather for {weather_data['city']} to the database!")
-
         cur.close()
         conn.close()
     except Exception as e:
         print(f"Database error: {e}")
 
-
-
 if __name__ == "__main__":
     cities = ["London", "New York", "Tokyo", "Dubai", "Lahore"]
-
     print(f"Starting pipeline for {len(cities)} cities...")
 
     for city in cities:
